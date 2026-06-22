@@ -7,7 +7,7 @@ import atelier from "@/assets/story-atelier.jpg";
 import catBags from "@/assets/cat-bags.jpg";
 import catKnit from "@/assets/cat-knitwear.jpg";
 import catShoes from "@/assets/cat-shoes.jpg";
-
+import { Newsletter } from "@/components/site/Newsletter";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
