@@ -3,6 +3,7 @@ import { Search, ShoppingBag, Heart, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { useCart } from "@/lib/cart";
 import { categories } from "@/lib/products";
+import { Search, ShoppingBag, Heart, Menu, X, User } from "lucide-react";
 
 export function Header() {
   const { count } = useCart();
@@ -44,6 +45,9 @@ export function Header() {
             </Link>
             <Link to="/wishlist" aria-label="Wishlist" className="hidden sm:inline-flex">
               <Heart className="size-5" />
+              <Link to="/account" aria-label="Account" className="hidden sm:inline-flex">
+  <User className="size-5" />
+</Link>
             </Link>
             <Link to="/cart" aria-label="Cart" className="relative">
               <ShoppingBag className="size-5" />
