@@ -27,7 +27,7 @@ type CheckoutForm = {
 };
 
 // Replace this with your real WhatsApp number in international format, e.g. "919876543210".
-const WHATSAPP_NUMBER = "910000000000";
+const WHATSAPP_NUMBER = "918511788105";
 
 function Checkout() {
   const { items, subtotalCents, clear } = useCart();
