@@ -1,0 +1,225 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * AEON — Editorial luxury design system.
+ * Warm off-white paper, true ink black, restrained neutrals,
+ * a single accent stone tone. Cormorant Garamond for display,
+ * Inter for UI.
+ */
+
+@theme inline {
+  --font-display: "Cormorant Garamond", "Times New Roman", serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, monospace;
+
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  --radius-3xl: 0px;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-stone-warm: var(--stone-warm);
+  --color-ink: var(--ink);
+  --color-paper: var(--paper);
+}
+
+:root {
+  --radius: 0px;
+
+  /* Warm paper white, true ink */
+  --paper: oklch(0.978 0.006 80);
+  --ink: oklch(0.14 0.005 80);
+  --stone-warm: oklch(0.86 0.012 70);
+
+  --background: var(--paper);
+  --foreground: var(--ink);
+
+  --card: var(--paper);
+  --card-foreground: var(--ink);
+  --popover: var(--paper);
+  --popover-foreground: var(--ink);
+
+  --primary: var(--ink);
+  --primary-foreground: var(--paper);
+
+  --secondary: oklch(0.945 0.008 75);
+  --secondary-foreground: var(--ink);
+
+  --muted: oklch(0.945 0.008 75);
+  --muted-foreground: oklch(0.45 0.008 70);
+
+  --accent: oklch(0.92 0.012 70);
+  --accent-foreground: var(--ink);
+
+  --destructive: oklch(0.45 0.18 28);
+  --destructive-foreground: var(--paper);
+
+  --border: oklch(0.88 0.008 75);
+  --input: oklch(0.88 0.008 75);
+  --ring: var(--ink);
+
+  --shadow-editorial: 0 30px 60px -30px oklch(0.14 0.005 80 / 0.25);
+}
+
+.dark {
+  --background: oklch(0.14 0.005 80);
+  --foreground: oklch(0.97 0.005 80);
+  --card: oklch(0.18 0.005 80);
+  --card-foreground: oklch(0.97 0.005 80);
+  --popover: oklch(0.18 0.005 80);
+  --popover-foreground: oklch(0.97 0.005 80);
+  --primary: oklch(0.97 0.005 80);
+  --primary-foreground: oklch(0.14 0.005 80);
+  --secondary: oklch(0.22 0.005 80);
+  --secondary-foreground: oklch(0.97 0.005 80);
+  --muted: oklch(0.22 0.005 80);
+  --muted-foreground: oklch(0.65 0.005 80);
+  --accent: oklch(0.22 0.005 80);
+  --accent-foreground: oklch(0.97 0.005 80);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.97 0.005 80);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv01";
+  }
+
+  h1, h2, h3, h4, .display {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1.05;
+  }
+
+  ::selection {
+    background-color: var(--ink);
+    color: var(--paper);
+  }
+}
+
+@layer components {
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .editorial-link {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 2px;
+  }
+  .editorial-link::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 1px;
+    background-color: currentColor;
+    transform: scaleX(1);
+    transform-origin: right;
+    transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+  .editorial-link:hover::after {
+    transform: scaleX(0);
+  }
+
+  .btn-ink {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 1rem 2.25rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 500;
+    border: 1px solid var(--ink);
+    transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+  .btn-ink:hover {
+    background: transparent;
+    color: var(--ink);
+  }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    color: var(--ink);
+    padding: 1rem 2.25rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 500;
+    border: 1px solid var(--ink);
+    transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+  .btn-ghost:hover {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .product-image-wrap {
+    position: relative;
+    overflow: hidden;
+    background: var(--accent);
+  }
+  .product-image-wrap img {
+    transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+  .product-image-wrap:hover img {
+    transform: scale(1.04);
+  }
+
+  .fade-in-up {
+    animation: fadeInUp 0.9s cubic-bezier(0.19, 1, 0.22, 1) both;
+  }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
