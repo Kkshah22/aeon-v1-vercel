@@ -35,6 +35,10 @@ export function Header() {
                 {c.name}
               </Link>
             ))}
+
+            <Link to="/about" className="editorial-link">
+              About
+            </Link>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -80,7 +84,11 @@ export function Header() {
               <User className="size-5" />
             </Link>
 
-            <Link to="/cart" aria-label="Cart" className="relative">
+            <Link
+              to="/cart"
+              aria-label="Cart"
+              className="relative"
+            >
               <ShoppingBag className="size-5" />
 
               {count > 0 && (
