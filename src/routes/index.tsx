@@ -1,5 +1,4 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-
 import { ProductCard } from "@/components/site/ProductCard";
 import { products } from "@/lib/products";
 
@@ -39,7 +38,7 @@ function Home() {
   const newArrivals = products.filter((p) => p.isNew).slice(0, 4);
 
   return (
-    <SiteLayout>
+    <>
       <section className="relative h-[88vh] min-h-[640px] w-full overflow-hidden">
         <img
           src={hero}
@@ -206,7 +205,6 @@ function Home() {
           ))}
         </div>
       </section>
-  
+    </>
   );
 }
-
