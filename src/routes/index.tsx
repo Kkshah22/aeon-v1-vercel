@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { SiteLayout } from "@/components/site/SiteLayout";
+
 import { ProductCard } from "@/components/site/ProductCard";
 import { products } from "@/lib/products";
 
@@ -206,7 +206,7 @@ function Home() {
           ))}
         </div>
       </section>
-    </SiteLayout>
+  
   );
 }
 
