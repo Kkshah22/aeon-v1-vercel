@@ -1,13 +1,13 @@
-import type { ReactNode } from "react";
-import { Header } from "./Header";
-import { Footer } from "./Footer";
+import { createFileRoute } from "@tanstack/react-router";
 
-export function SiteLayout({ children }: { children: ReactNode }) {
+export const Route = createFileRoute("/")({
+  component: HomePage,
+});
+
+function HomePage() {
   return (
-    <div className="flex min-h-screen flex-col bg-background text-foreground">
-      <Header />
-      <main className="flex-1">{children}</main>
-      <Footer />
-    </div>
+    <>
+      {/* Your homepage content only */}
+    </>
   );
 }
