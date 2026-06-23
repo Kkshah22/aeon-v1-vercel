@@ -33,6 +33,15 @@ function AccountPage() {
             />
           </div>
 
+          <div className="text-right">
+            <Link
+              to="/forgot-password"
+              className="text-sm underline underline-offset-4"
+            >
+              Forgot Password?
+            </Link>
+          </div>
+
           <button
             type="submit"
             className="w-full bg-black py-4 text-sm uppercase tracking-[0.2em] text-white"
@@ -40,6 +49,26 @@ function AccountPage() {
             Sign In
           </button>
         </form>
+
+        <div className="my-8 flex items-center gap-4">
+          <div className="h-px flex-1 bg-border" />
+          <span className="text-sm text-neutral-500">OR</span>
+          <div className="h-px flex-1 bg-border" />
+        </div>
+
+        <Link
+          to="/checkout"
+          className="block w-full border border-black py-4 text-center text-sm uppercase tracking-[0.2em]"
+        >
+          Continue as Guest
+        </Link>
+
+        <Link
+          to="/"
+          className="mt-4 block w-full border border-red-400 py-4 text-center text-sm uppercase tracking-[0.2em] text-red-600"
+        >
+          Cancel
+        </Link>
 
         <div className="mt-8 text-center text-sm">
           <span>New to AEON? </span>
