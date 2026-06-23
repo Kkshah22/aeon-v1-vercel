@@ -4,6 +4,7 @@ import { Toaster } from "sonner";
 
 import { CartProvider } from "@/lib/cart";
 import { WishlistProvider } from "@/lib/wishlist";
+import { SiteLayout } from "@/components/site/SiteLayout";
 
 function NotFoundComponent() {
   return (
@@ -60,7 +61,10 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <CartProvider>
         <WishlistProvider>
-          <Outlet />
+          <SiteLayout>
+            <Outlet />
+          </SiteLayout>
+
           <Toaster position="top-center" />
         </WishlistProvider>
       </CartProvider>
