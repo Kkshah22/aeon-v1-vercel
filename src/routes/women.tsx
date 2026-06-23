@@ -1,5 +1,4 @@
 
-```tsx
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/women")({
@@ -42,4 +41,3 @@ function WomenPage() {
     </main>
   );
 }
-```
