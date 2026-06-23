@@ -1,26 +1,34 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { ProductCard } from "@/components/site/ProductCard";
-import { products, categories } from "@/lib/products";
+import { products } from "@/lib/products";
+
 import hero from "@/assets/hero-coat.jpg";
 import atelier from "@/assets/story-atelier.jpg";
 import catBags from "@/assets/cat-bags.jpg";
 import catKnit from "@/assets/cat-knitwear.jpg";
 import catShoes from "@/assets/cat-shoes.jpg";
-import { Newsletter } from "@/components/site/Newsletter";
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "AEON — Considered Luxury" },
+      { title: "AEON — Quiet Essentials" },
       {
         name: "description",
         content:
-          "A house of considered objects. Tailored ready to wear, leather goods, and knitwear. Made in Europe.",
+          "Premium essentials for men and women. Thoughtful materials, precise construction, and timeless silhouettes.",
       },
-      { property: "og:title", content: "AEON — Considered Luxury" },
+      { property: "og:title", content: "AEON — Quiet Essentials" },
       { property: "og:image", content: hero },
     ],
-    links: [{ rel: "preload", as: "image", href: hero, fetchpriority: "high" } as never],
+    links: [
+      {
+        rel: "preload",
+        as: "image",
+        href: hero,
+        fetchpriority: "high",
+      } as never,
+    ],
   }),
   component: Home,
 });
@@ -36,34 +44,66 @@ function Home() {
       <section className="relative h-[88vh] min-h-[640px] w-full overflow-hidden">
         <img
           src={hero}
-          alt="AEON Autumn collection — wool overcoat"
-          className="absolute inset-0 w-full h-full object-cover"
+          alt="AEON Summer collection"
+          className="absolute inset-0 h-full w-full object-cover"
           fetchPriority="high"
         />
+
         <div className="absolute inset-0 bg-gradient-to-b from-black/0 via-black/0 to-black/30" />
-        <div className="relative h-full mx-auto max-w-[1600px] px-6 lg:px-10 flex flex-col justify-end pb-20 lg:pb-24">
-          <div className="max-w-xl text-paper fade-in-up">
-            <p className="eyebrow mb-6">Autumn — Winter MMXXVI</p>
-            <h1 className="font-display text-5xl md:text-6xl lg:text-7xl leading-[0.95] mb-8">
-              Built to outlast the season.
+
+        <div className="relative mx-auto flex h-full max-w-[1600px] flex-col justify-end px-6 pb-20 lg:px-10 lg:pb-24">
+          <div className="max-w-2xl text-paper fade-in-up">
+            <p className="eyebrow mb-6">Summer MMXXVI</p>
+
+            <h1 className="font-display mb-6 text-5xl leading-[0.95] md:text-6xl lg:text-7xl">
+              A wardrobe reduced to what matters.
             </h1>
-            <Link to="/shop" className="btn-ink bg-paper text-ink border-paper hover:bg-transparent hover:text-paper">
-              Discover
-            </Link>
+
+            <p className="mb-8 max-w-md text-base leading-relaxed text-paper/80">
+              Refined essentials for men and women. Thoughtful materials,
+              precise construction, and timeless silhouettes.
+            </p>
+
+            <div className="flex gap-4">
+              <Link
+                to="/shop"
+                search={{ gender: "women" } as never}
+                className="btn-ink bg-paper text-ink border-paper hover:bg-transparent hover:text-paper"
+              >
+                Shop Women
+              </Link>
+
+              <Link
+                to="/shop"
+                search={{ gender: "men" } as never}
+                className="btn-ink bg-paper text-ink border-paper hover:bg-transparent hover:text-paper"
+              >
+                Shop Men
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
       {/* FEATURED */}
-      <section className="mx-auto max-w-[1600px] px-6 lg:px-10 py-24 lg:py-32">
-        <div className="flex items-end justify-between mb-12 lg:mb-16">
+      <section className="mx-auto max-w-[1600px] px-6 py-24 lg:px-10 lg:py-32">
+        <div className="mb-12 flex items-end justify-between lg:mb-16">
           <div>
-            <p className="eyebrow text-muted-foreground mb-3">The Edit</p>
-            <h2 className="font-display text-4xl lg:text-5xl">Featured Collection</h2>
+            <p className="eyebrow mb-3 text-muted-foreground">The Edit</p>
+            <h2 className="font-display text-4xl lg:text-5xl">
+              Summer Essentials
+            </h2>
           </div>
-          <Link to="/shop" className="editorial-link eyebrow hidden sm:inline-block">View all</Link>
+
+          <Link
+            to="/shop"
+            className="editorial-link eyebrow hidden sm:inline-block"
+          >
+            View all
+          </Link>
         </div>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-12">
+
+        <div className="grid grid-cols-2 gap-x-6 gap-y-12 lg:grid-cols-4">
           {featured.map((p) => (
             <ProductCard key={p.slug} product={p} />
           ))}
@@ -71,28 +111,30 @@ function Home() {
       </section>
 
       {/* CATEGORIES */}
-      <section className="mx-auto max-w-[1600px] px-6 lg:px-10 pb-24 lg:pb-32">
-        <div className="grid lg:grid-cols-3 gap-6">
+      <section className="mx-auto max-w-[1600px] px-6 pb-24 lg:px-10 lg:pb-32">
+        <div className="grid gap-6 lg:grid-cols-3">
           {[
+            { slug: "shirts", name: "Shirts", img: catKnit },
+            { slug: "trousers", name: "Trousers", img: catShoes },
             { slug: "bags", name: "Bags", img: catBags },
-            { slug: "knitwear", name: "Knitwear", img: catKnit },
-            { slug: "shoes", name: "Shoes", img: catShoes },
           ].map((c) => (
             <Link
               key={c.slug}
               to="/shop"
               search={{ category: c.slug } as never}
-              className="group block relative aspect-[4/5] overflow-hidden"
+              className="group relative block aspect-[4/5] overflow-hidden"
             >
               <img
                 src={c.img}
                 alt={c.name}
                 loading="lazy"
-                className="w-full h-full object-cover transition-transform duration-[1500ms] group-hover:scale-105"
+                className="h-full w-full object-cover transition-transform duration-[1500ms] group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors" />
+
+              <div className="absolute inset-0 bg-black/10 transition-colors group-hover:bg-black/20" />
+
               <div className="absolute inset-x-0 bottom-0 p-8 text-paper">
-                <p className="eyebrow text-paper/70 mb-2">Shop</p>
+                <p className="eyebrow mb-2 text-paper/70">Shop</p>
                 <h3 className="font-display text-4xl">{c.name}</h3>
               </div>
             </Link>
@@ -102,38 +144,57 @@ function Home() {
 
       {/* STORY */}
       <section className="bg-secondary py-24 lg:py-32">
-        <div className="mx-auto max-w-[1600px] px-6 lg:px-10 grid lg:grid-cols-2 gap-16 items-center">
-          <img src={atelier} alt="The AEON atelier" loading="lazy" className="w-full aspect-[4/3] object-cover" />
+        <div className="mx-auto grid max-w-[1600px] items-center gap-16 px-6 lg:grid-cols-2 lg:px-10">
+          <img
+            src={atelier}
+            alt="The AEON atelier"
+            loading="lazy"
+            className="aspect-[4/3] w-full object-cover"
+          />
+
           <div className="max-w-xl">
-            <p className="eyebrow text-muted-foreground mb-4">The House</p>
-            <h2 className="font-display text-4xl lg:text-5xl leading-tight mb-8">
-              A practice of restraint.
+            <p className="eyebrow mb-4 text-muted-foreground">The House</p>
+
+            <h2 className="font-display mb-8 text-4xl leading-tight lg:text-5xl">
+              Quiet essentials. Made exceptionally well.
             </h2>
-            <p className="text-base leading-relaxed text-muted-foreground mb-6">
-              AEON began with a single question: what survives the season?
-              Every garment, every object is made to be lived with —
-              tailored from natural fibres in small European workshops,
-              built to be repaired rather than replaced.
+
+            <p className="mb-6 text-base leading-relaxed text-muted-foreground">
+              AEON is built around the pieces we return to every day: clean
+              shirts, considered trousers, soft knits, and objects made to live
+              with ease.
             </p>
-            <p className="text-base leading-relaxed text-muted-foreground mb-10">
-              We design without trend. We work with the same hands, the same mills,
-              the same tanneries, year after year.
+
+            <p className="mb-10 text-base leading-relaxed text-muted-foreground">
+              We design with restraint, choosing natural materials, precise
+              proportions, and silhouettes that feel relevant beyond a single
+              season.
             </p>
-            <Link to="/about" className="btn-ghost">Our Story</Link>
+
+            <Link to="/about" className="btn-ghost">
+              Our Story
+            </Link>
           </div>
         </div>
       </section>
 
       {/* BESTSELLERS */}
-      <section className="mx-auto max-w-[1600px] px-6 lg:px-10 py-24 lg:py-32">
-        <div className="flex items-end justify-between mb-12 lg:mb-16">
+      <section className="mx-auto max-w-[1600px] px-6 py-24 lg:px-10 lg:py-32">
+        <div className="mb-12 flex items-end justify-between lg:mb-16">
           <div>
-            <p className="eyebrow text-muted-foreground mb-3">Always</p>
+            <p className="eyebrow mb-3 text-muted-foreground">Always</p>
             <h2 className="font-display text-4xl lg:text-5xl">Best Sellers</h2>
           </div>
-          <Link to="/shop" className="editorial-link eyebrow hidden sm:inline-block">View all</Link>
+
+          <Link
+            to="/shop"
+            className="editorial-link eyebrow hidden sm:inline-block"
+          >
+            View all
+          </Link>
         </div>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-12">
+
+        <div className="grid grid-cols-2 gap-x-6 gap-y-12 lg:grid-cols-4">
           {bestsellers.map((p) => (
             <ProductCard key={p.slug} product={p} />
           ))}
@@ -141,20 +202,29 @@ function Home() {
       </section>
 
       {/* NEW ARRIVALS */}
-      <section className="mx-auto max-w-[1600px] px-6 lg:px-10 pb-24 lg:pb-32">
-        <div className="flex items-end justify-between mb-12 lg:mb-16">
+      <section className="mx-auto max-w-[1600px] px-6 pb-24 lg:px-10 lg:pb-32">
+        <div className="mb-12 flex items-end justify-between lg:mb-16">
           <div>
-            <p className="eyebrow text-muted-foreground mb-3">Just In</p>
+            <p className="eyebrow mb-3 text-muted-foreground">Just In</p>
             <h2 className="font-display text-4xl lg:text-5xl">New Arrivals</h2>
           </div>
-          <Link to="/shop" className="editorial-link eyebrow hidden sm:inline-block">View all</Link>
+
+          <Link
+            to="/shop"
+            className="editorial-link eyebrow hidden sm:inline-block"
+          >
+            View all
+          </Link>
         </div>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-12">
+
+        <div className="grid grid-cols-2 gap-x-6 gap-y-12 lg:grid-cols-4">
           {newArrivals.map((p) => (
             <ProductCard key={p.slug} product={p} />
           ))}
         </div>
       </section>
     </SiteLayout>
+  );
+}
   );
 }
