@@ -8,7 +8,7 @@ export const Route = createFileRoute("/checkout")({
   head: () => ({
     meta: [
       { title: "Checkout — AEON" },
-      { name: "description", content: "Place your AEON order through WhatsApp for launch." },
+      { name: "description", content: "Send your AEON order request to client care for confirmation." },
     ],
   }),
   component: Checkout,
@@ -25,7 +25,6 @@ type CheckoutForm = {
   pincode: string;
 };
 
-// Replace this with your real WhatsApp number in international format, e.g. "919876543210".
 const WHATSAPP_NUMBER = "918511788105";
 
 function Checkout() {
@@ -47,7 +46,7 @@ function Checkout() {
 
   const whatsappUrl = useMemo(() => {
     const lines = [
-      "Hello AEON, I would like to place an order:",
+      "Hello AEON, I would like to request an order:",
       "",
       ...items.map((item) => `• ${item.name} | Size ${item.size} | Qty ${item.quantity} | ${formatPrice(item.priceCents * item.quantity)}`),
       "",
@@ -85,13 +84,13 @@ function Checkout() {
     setSubmitting(true);
 
     if (WHATSAPP_NUMBER === "910000000000") {
-      toast.error("Please replace WHATSAPP_NUMBER in src/routes/checkout.tsx before accepting orders.");
+      toast.error("Client care is unavailable at the moment. Please try again shortly.");
       setSubmitting(false);
       return;
     }
 
     window.open(whatsappUrl, "_blank", "noopener,noreferrer");
-    toast.success("Your WhatsApp order message is ready to send.");
+    toast.success("Your order request is ready to review in WhatsApp.");
     setSubmitting(false);
   };
 
@@ -118,10 +117,10 @@ function Checkout() {
             </Section>
 
             <button disabled={submitting} className="btn-ink w-full disabled:opacity-50">
-              {submitting ? "Preparing WhatsApp order…" : "Place order via WhatsApp"}
+              {submitting ? "Preparing order request..." : "Send order request"}
             </button>
             <p className="text-xs text-muted-foreground text-center">
-              No payment gateway is connected yet. Orders are manually confirmed on WhatsApp for launch.
+              An AEON client advisor will confirm availability, delivery details, and payment instructions before dispatch.
             </p>
             <button type="button" onClick={clear} className="btn-ghost w-full">
               Clear bag
