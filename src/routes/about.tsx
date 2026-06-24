@@ -1,5 +1,4 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { SiteLayout } from "@/components/site/SiteLayout";
 import atelier from "@/assets/story-atelier.jpg";
 import hero from "@/assets/hero-coat.jpg";
 
@@ -17,7 +16,7 @@ export const Route = createFileRoute("/about")({
 
 function About() {
   return (
-    <SiteLayout>
+    <>
       <section className="relative h-[60vh] min-h-[420px] w-full overflow-hidden">
         <img src={hero} alt="AEON" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-black/30" />
@@ -81,6 +80,6 @@ function About() {
           </div>
         ))}
       </section>
-    </SiteLayout>
+    </>
   );
 }

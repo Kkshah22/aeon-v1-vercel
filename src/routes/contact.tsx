@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { SiteLayout } from "@/components/site/SiteLayout";
 import { useState } from "react";
 import { toast } from "sonner";
 import { z } from "zod";
@@ -65,7 +64,7 @@ function Contact() {
   };
 
   return (
-    <SiteLayout>
+    <>
       <section className="border-b border-border">
         <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-16 lg:py-24">
           <p className="eyebrow text-muted-foreground mb-4">Get in Touch</p>
@@ -134,7 +133,7 @@ function Contact() {
           </div>
         </div>
       </section>
-    </SiteLayout>
+    </>
   );
 }
 

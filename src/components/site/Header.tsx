@@ -1,6 +1,7 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useLocation } from "@tanstack/react-router";
 import { useState } from "react";
 import { useCart } from "@/lib/cart";
+import { cn } from "@/lib/utils";
 import {
   Search,
   ShoppingBag,
@@ -13,6 +14,15 @@ import {
 export function Header() {
   const { count } = useCart();
   const [open, setOpen] = useState(false);
+  const pathname = useLocation({
+    select: (location) => location.pathname,
+  });
+
+  const isActive = (to: string) =>
+    to === "/" ? pathname === "/" : pathname === to || pathname.startsWith(`${to}/`);
+
+  const navLinkClass = (to: string, className?: string) =>
+    cn("editorial-link", className, isActive(to) && "text-ink");
 
   return (
     <header className="sticky top-0 z-50 bg-paper/90 backdrop-blur-md border-b border-border">
@@ -20,15 +30,27 @@ export function Header() {
         <div className="grid grid-cols-3 items-center h-16 lg:h-20">
           {/* Desktop Left */}
           <nav className="hidden lg:flex items-center gap-8 text-xs tracking-[0.18em] uppercase">
-            <Link to="/women" className="editorial-link">
+            <Link
+              to="/women"
+              className={navLinkClass("/women")}
+              data-active={isActive("/women")}
+            >
               Women
             </Link>
 
-            <Link to="/men" className="editorial-link">
+            <Link
+              to="/men"
+              className={navLinkClass("/men")}
+              data-active={isActive("/men")}
+            >
               Men
             </Link>
 
-            <Link to="/essentials" className="editorial-link">
+            <Link
+              to="/essentials"
+              className={navLinkClass("/essentials")}
+              data-active={isActive("/essentials")}
+            >
               Essentials
             </Link>
           </nav>
@@ -53,11 +75,19 @@ export function Header() {
           {/* Desktop Right + Icons */}
           <div className="flex items-center justify-end gap-4 lg:gap-6">
             <div className="hidden lg:flex items-center gap-8 text-xs tracking-[0.18em] uppercase">
-              <Link to="/journal" className="editorial-link">
+              <Link
+                to="/journal"
+                className={navLinkClass("/journal")}
+                data-active={isActive("/journal")}
+              >
                 Journal
               </Link>
 
-              <Link to="/about" className="editorial-link">
+              <Link
+                to="/about"
+                className={navLinkClass("/about")}
+                data-active={isActive("/about")}
+              >
                 About
               </Link>
             </div>
@@ -105,11 +135,15 @@ export function Header() {
 
       {/* Mobile Menu */}
       {open && (
-        <div className="lg:hidden fixed inset-0 bg-paper z-50 flex flex-col fade-in-up">
-          <div className="flex items-center justify-between h-16 px-6 border-b border-border">
-            <span className="font-display text-2xl tracking-[0.4em]">
+        <div className="lg:hidden fixed inset-0 z-[60] bg-paper flex flex-col fade-in-up">
+          <div className="flex h-16 shrink-0 items-center justify-between border-b border-border px-6">
+            <Link
+              to="/"
+              onClick={() => setOpen(false)}
+              className="font-display text-2xl tracking-[0.4em]"
+            >
               AEON
-            </span>
+            </Link>
 
             <button
               onClick={() => setOpen(false)}
@@ -121,15 +155,30 @@ export function Header() {
           </div>
 
           <nav className="flex-1 flex flex-col gap-8 p-10 text-2xl font-display">
-            <Link to="/women" onClick={() => setOpen(false)}>
+            <Link
+              to="/women"
+              onClick={() => setOpen(false)}
+              className={navLinkClass("/women")}
+              data-active={isActive("/women")}
+            >
               Women
             </Link>
 
-            <Link to="/men" onClick={() => setOpen(false)}>
+            <Link
+              to="/men"
+              onClick={() => setOpen(false)}
+              className={navLinkClass("/men")}
+              data-active={isActive("/men")}
+            >
               Men
             </Link>
 
-            <Link to="/essentials" onClick={() => setOpen(false)}>
+            <Link
+              to="/essentials"
+              onClick={() => setOpen(false)}
+              className={navLinkClass("/essentials")}
+              data-active={isActive("/essentials")}
+            >
               Essentials
             </Link>
 
@@ -138,7 +187,8 @@ export function Header() {
             <Link
               to="/journal"
               onClick={() => setOpen(false)}
-              className="text-base eyebrow"
+              className={navLinkClass("/journal", "text-base eyebrow")}
+              data-active={isActive("/journal")}
             >
               Journal
             </Link>
@@ -146,7 +196,8 @@ export function Header() {
             <Link
               to="/about"
               onClick={() => setOpen(false)}
-              className="text-base eyebrow"
+              className={navLinkClass("/about", "text-base eyebrow")}
+              data-active={isActive("/about")}
             >
               About
             </Link>
@@ -154,7 +205,8 @@ export function Header() {
             <Link
               to="/account"
               onClick={() => setOpen(false)}
-              className="text-base eyebrow"
+              className={navLinkClass("/account", "text-base eyebrow")}
+              data-active={isActive("/account")}
             >
               Account
             </Link>
@@ -164,5 +216,3 @@ export function Header() {
     </header>
   );
 }
-
-

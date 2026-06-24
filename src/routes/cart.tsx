@@ -1,5 +1,4 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { SiteLayout } from "@/components/site/SiteLayout";
 import { useCart } from "@/lib/cart";
 import { formatPrice } from "@/lib/products";
 import { Minus, Plus, X } from "lucide-react";
@@ -20,7 +19,7 @@ function CartPage() {
   const totalCents = subtotalCents + shippingCents;
 
   return (
-    <SiteLayout>
+    <>
       <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-16 lg:py-24">
         <h1 className="font-display text-4xl lg:text-6xl mb-12">Your Bag</h1>
 
@@ -84,7 +83,7 @@ function CartPage() {
           </div>
         )}
       </div>
-    </SiteLayout>
+    </>
   );
 }
 

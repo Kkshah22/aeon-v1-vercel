@@ -1,5 +1,4 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { SiteLayout } from "@/components/site/SiteLayout";
 import { ProductCard } from "@/components/site/ProductCard";
 import { getProduct, products, formatPrice } from "@/lib/products";
 import { useState } from "react";
@@ -27,12 +26,12 @@ export const Route = createFileRoute("/product/$slug")({
   }),
   component: ProductDetail,
   notFoundComponent: () => (
-    <SiteLayout>
+    <>
       <div className="py-32 text-center">
         <p className="font-display text-4xl mb-4">Not found.</p>
         <Link to="/shop" className="editorial-link eyebrow">Back to shop</Link>
       </div>
-    </SiteLayout>
+    </>
   ),
 });
 
@@ -63,7 +62,7 @@ function ProductDetail() {
   };
 
   return (
-    <SiteLayout>
+    <>
       <div className="mx-auto max-w-[1600px] px-6 lg:px-10 pt-10 pb-24">
         <nav className="eyebrow text-muted-foreground mb-10">
           <Link to="/shop" className="hover:text-ink">Shop</Link>
@@ -147,7 +146,7 @@ function ProductDetail() {
               <button onClick={addToCart} className="btn-ink w-full">Add to Bag</button>
               <button
                 onClick={() => toggle(product.slug)}
-                className="btn-ghost w-full inline-flex items-center justify-center gap-2"
+                className="btn-ghost w-fulh inline-flex items-center justify-center gap-2"
               >
                 <Heart className={`size-4 ${wished ? "fill-ink" : ""}`} />
                 {wished ? "In wishlist" : "Add to wishlist"}
@@ -181,7 +180,7 @@ function ProductDetail() {
           </section>
         )}
       </div>
-    </SiteLayout>
+    </>
   );
 }
 

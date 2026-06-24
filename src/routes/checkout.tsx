@@ -1,5 +1,4 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { SiteLayout } from "@/components/site/SiteLayout";
 import { useCart } from "@/lib/cart";
 import { formatPrice } from "@/lib/products";
 import { useMemo, useState } from "react";
@@ -68,12 +67,12 @@ function Checkout() {
 
   if (items.length === 0) {
     return (
-      <SiteLayout>
+      <>
         <div className="py-32 text-center">
           <p className="font-display text-3xl mb-4">Your bag is empty.</p>
           <Link to="/shop" className="btn-ink mt-4 inline-flex">Shop</Link>
         </div>
-      </SiteLayout>
+      </>
     );
   }
 
@@ -97,7 +96,7 @@ function Checkout() {
   };
 
   return (
-    <SiteLayout>
+    <>
       <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-16 lg:py-24">
         <h1 className="font-display text-4xl lg:text-6xl mb-12">Checkout</h1>
         <div className="grid lg:grid-cols-[1.4fr_1fr] gap-16">
@@ -154,7 +153,7 @@ function Checkout() {
           </aside>
         </div>
       </div>
-    </SiteLayout>
+    </>
   );
 }
 

@@ -1,5 +1,4 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { SiteLayout } from "@/components/site/SiteLayout";
 import { useWishlist } from "@/lib/wishlist";
 import { products } from "@/lib/products";
 import { ProductCard } from "@/components/site/ProductCard";
@@ -13,7 +12,7 @@ function WishlistPage() {
   const { slugs } = useWishlist();
   const items = products.filter((p) => slugs.includes(p.slug));
   return (
-    <SiteLayout>
+    <>
       <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-16 lg:py-24">
         <h1 className="font-display text-4xl lg:text-5xl mb-10">Wishlist</h1>
         {items.length === 0 ? (
@@ -27,6 +26,6 @@ function WishlistPage() {
           </div>
         )}
       </div>
-    </SiteLayout>
+    </>
   );
 }

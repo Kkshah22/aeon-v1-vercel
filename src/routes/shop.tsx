@@ -1,5 +1,4 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { SiteLayout } from "@/components/site/SiteLayout";
 import { ProductCard } from "@/components/site/ProductCard";
 import { products, categories } from "@/lib/products";
 import { useMemo, useState } from "react";
@@ -66,7 +65,7 @@ function Shop() {
     navigate({ search: (prev: typeof search) => ({ ...prev, ...patch }) as never });
 
   return (
-    <SiteLayout>
+    <>
       <section className="border-b border-border">
         <div className="mx-auto max-w-[1600px] px-6 lg:px-10 py-16 lg:py-24">
           <p className="eyebrow text-muted-foreground mb-4">The Collection</p>
@@ -140,7 +139,7 @@ function Shop() {
           </div>
         )}
       </section>
-    </SiteLayout>
+    </>
   );
 }
 
