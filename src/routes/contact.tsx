@@ -27,8 +27,12 @@ const faqs = [
     a: "Each piece is produced in small, family-run European workshops. Tailoring in Portugal, leather in Tuscany, knitwear in Scotland and Inner Mongolia.",
   },
   {
+    q: "How do I place an order?",
+    a: "Orders are placed through the website and completed with an AEON client advisor on WhatsApp. Your advisor confirms availability, delivery details, and payment instructions before dispatch.",
+  },
+  {
     q: "What is your return policy?",
-    a: "We accept returns within 30 days of delivery, on unworn pieces in their original packaging. Final sale items are not eligible.",
+    a: "Returns are accepted within 7 days of delivery on unworn pieces in their original packaging. Final sale, altered, and personalized pieces are not eligible.",
   },
   {
     q: "Do you offer lifetime repairs?",
@@ -36,11 +40,11 @@ const faqs = [
   },
   {
     q: "Which payment methods are accepted?",
-    a: "For launch, orders are placed through WhatsApp and confirmed manually. Online payments can be added later.",
+    a: "A client advisor shares secure payment instructions after your order details are confirmed on WhatsApp.",
   },
   {
     q: "How long does shipping take?",
-    a: "Orders are confirmed manually and dispatched within 1–2 business days after confirmation. Shipping is free above ₹15,000.",
+    a: "Ready pieces are usually dispatched within 1–2 business days after confirmation. Shipping is complimentary across India on orders over ₹15,000; smaller orders ship for ₹250.",
   },
 ];
 
@@ -77,27 +81,20 @@ function Contact() {
           <h2 className="font-display text-3xl mb-6">Speak with us</h2>
           <p className="text-muted-foreground leading-relaxed mb-10 max-w-md">
             For sizing, styling, repair, or bespoke enquiries — our client advisors are
-            available Monday to Saturday, 10:00 — 19:00 IST.
+            available Monday to Saturday, 10:00 to 19:00 IST.
           </p>
           <div className="space-y-6 text-sm">
             <div>
-              <p className="eyebrow text-muted-foreground mb-2">Email</p>
-              <a href="mailto:hello@aeon.studio" className="editorial-link">hello@aeon.studio</a>
+              <p className="eyebrow text-muted-foreground mb-2">Client Care</p>
+              <p>Use the form for sizing, styling, repair, and order support.</p>
             </div>
             <div>
-              <p className="eyebrow text-muted-foreground mb-2">Telephone</p>
-              <p>+91 00000 00000</p>
+              <p className="eyebrow text-muted-foreground mb-2">WhatsApp Orders</p>
+              <a href="https://wa.me/918511788105" className="editorial-link">+91 85117 88105</a>
             </div>
             <div>
-              <p className="eyebrow text-muted-foreground mb-2">Atelier</p>
-              <p>India launch studio<br />Address coming soon</p>
-            </div>
-            <div>
-              <p className="eyebrow text-muted-foreground mb-2">Follow</p>
-              <div className="flex gap-5">
-                <a href="#" className="editorial-link">Instagram</a>
-                <a href="#" className="editorial-link">Pinterest</a>
-              </div>
+              <p className="eyebrow text-muted-foreground mb-2">Service Area</p>
+              <p>Online client care and delivery across India.</p>
             </div>
           </div>
         </div>
@@ -122,6 +119,26 @@ function Contact() {
         </form>
       </section>
 
+      <section className="mx-auto max-w-[1400px] px-6 lg:px-10 pb-16 lg:pb-24">
+        <div className="grid gap-10 border-y border-border py-12 md:grid-cols-3">
+          <ServiceBlock
+            id="shipping"
+            title="Shipping"
+            copy="Ready pieces are dispatched within 1–2 business days after order confirmation. Shipping is complimentary across India on orders over ₹15,000; smaller orders ship for ₹250."
+          />
+          <ServiceBlock
+            id="returns"
+            title="Returns"
+            copy="Returns are accepted within 7 days of delivery on unworn pieces in original packaging. Final sale, altered, and personalized pieces are not eligible."
+          />
+          <ServiceBlock
+            id="ordering"
+            title="Ordering"
+            copy="Checkout opens a WhatsApp order request with your bag and delivery details. An AEON client advisor confirms availability and payment instructions before dispatch."
+          />
+        </div>
+      </section>
+
       <section id="faq" className="bg-secondary py-24 lg:py-32">
         <div className="mx-auto max-w-3xl px-6">
           <p className="eyebrow text-muted-foreground mb-4 text-center">FAQ</p>
@@ -134,6 +151,15 @@ function Contact() {
         </div>
       </section>
     </>
+  );
+}
+
+function ServiceBlock({ id, title, copy }: { id: string; title: string; copy: string }) {
+  return (
+    <div id={id} className="scroll-mt-28">
+      <h2 className="eyebrow mb-4">{title}</h2>
+      <p className="text-sm leading-relaxed text-muted-foreground">{copy}</p>
+    </div>
   );
 }
 
