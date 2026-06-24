@@ -13,6 +13,7 @@ import { Route as CartRouteImport } from './routes/cart'
 import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as EssentialsRouteImport } from './routes/essentials'
+import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
 import { Route as JournalRouteImport } from './routes/journal'
 import { Route as MenRouteImport } from './routes/men'
 import { Route as WomenRouteImport } from './routes/women'
@@ -69,6 +70,12 @@ const EssentialsRoute = EssentialsRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 
+const ForgotPasswordRoute = ForgotPasswordRouteImport.update({
+  id: '/forgot-password',
+  path: '/forgot-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+
 const JournalRoute = JournalRouteImport.update({
   id: '/journal',
   path: '/journal',
@@ -120,6 +127,7 @@ const rootRouteChildren = {
   CheckoutRoute,
   ContactRoute,
   EssentialsRoute,
+  ForgotPasswordRoute,
   JournalRoute,
   MenRoute,
   WomenRoute,
