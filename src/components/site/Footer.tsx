@@ -13,7 +13,7 @@ export function Footer() {
     setTimeout(() => {
       setSubmitting(false);
       setEmail("");
-      toast.success("Thank you. Newsletter signup will open soon.");
+      toast.success("Thank you. We will let you know when the AEON list opens.");
     }, 250);
   };
 
@@ -29,7 +29,8 @@ export function Footer() {
           </div>
           <form onSubmit={subscribe} className="flex flex-col justify-end gap-4">
             <p className="text-paper/60 text-sm max-w-md">
-              Newsletter capture is paused for launch. You can still collect interest here without a database dependency.
+              The AEON list opens soon with collection notes, private previews, and client-care updates.
+              Leave your email to be notified first.
             </p>
             <div className="flex gap-0 border-b border-paper/30 focus-within:border-paper">
               <input
@@ -72,14 +73,16 @@ export function Footer() {
           </FooterCol>
           <FooterCol title="Services">
             <Link to="/contact">Client Care</Link>
-            <Link to="/contact">Shipping & Returns</Link>
+            <Link to="/contact" hash="shipping">Shipping</Link>
+            <Link to="/contact" hash="returns">Returns</Link>
+            <Link to="/contact" hash="ordering">Ordering</Link>
             <Link to="/wishlist">Wishlist</Link>
           </FooterCol>
         </div>
 
         <div className="flex flex-col lg:flex-row gap-4 lg:items-center lg:justify-between pt-10 border-t border-paper/15 text-xs text-paper/50">
           <span>© {new Date().getFullYear()} AEON. All rights reserved.</span>
-          <span className="tracking-[0.18em] uppercase">Launching in India</span>
+          <span className="tracking-[0.18em] uppercase">India concierge service</span>
         </div>
       </div>
     </footer>
