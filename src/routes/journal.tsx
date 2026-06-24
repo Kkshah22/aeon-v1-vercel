@@ -1,25 +1,54 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/journal")({
+  head: () => ({
+    meta: [
+      { title: "Journal — AEON" },
+      { name: "description", content: "AEON notes on materials, care, and the permanent wardrobe." },
+    ],
+  }),
   component: JournalPage,
 });
 
 function JournalPage() {
   return (
-    <main className="min-h-screen bg-paper px-6 py-24">
-      <div className="mx-auto max-w-6xl">
-        <p className="mb-3 text-xs uppercase tracking-[0.3em] text-neutral-500">
-          Journal
-        </p>
+    <>
+      <section className="border-b border-border">
+        <div className="mx-auto max-w-[1400px] px-6 py-16 lg:px-10 lg:py-24">
+          <p className="eyebrow mb-4 text-muted-foreground">Journal</p>
+          <h1 className="font-display max-w-3xl text-5xl lg:text-7xl">
+            Notes on material, care, and permanence.
+          </h1>
+        </div>
+      </section>
 
-        <h1 className="mb-8 font-display text-6xl">
-          Notes on simplicity.
-        </h1>
+      <section className="mx-auto max-w-[1400px] px-6 py-16 lg:px-10 lg:py-24">
+        <div className="grid gap-10 md:grid-cols-3">
+          {[
+            {
+              title: "Care for Wool",
+              copy: "Brush lightly after wear, rest between uses, and store with room for the cloth to breathe.",
+            },
+            {
+              title: "Leather Objects",
+              copy: "Keep leather dry, condition sparingly, and allow natural marks to become part of the piece.",
+            },
+            {
+              title: "Cashmere Storage",
+              copy: "Fold knitwear rather than hanging it. Store clean, dry, and away from direct sun.",
+            },
+          ].map((item) => (
+            <article key={item.title} className="border-t border-border pt-6">
+              <h2 className="font-display mb-4 text-2xl">{item.title}</h2>
+              <p className="text-sm leading-relaxed text-muted-foreground">{item.copy}</p>
+            </article>
+          ))}
+        </div>
 
-        <p className="max-w-xl text-neutral-600">
-          Stories, materials, rituals, and design thoughts from AEON.
-        </p>
-      </div>
-    </main>
+        <Link to="/contact" className="btn-ghost mt-14">
+          Ask Client Care
+        </Link>
+      </section>
+    </>
   );
 }
