@@ -146,7 +146,7 @@ function ProductDetail() {
               <button onClick={addToCart} className="btn-ink w-full">Add to Bag</button>
               <button
                 onClick={() => toggle(product.slug)}
-                className="btn-ghost w-fulh inline-flex items-center justify-center gap-2"
+                className="btn-ghost w-full inline-flex items-center justify-center gap-2"
               >
                 <Heart className={`size-4 ${wished ? "fill-ink" : ""}`} />
                 {wished ? "In wishlist" : "Add to wishlist"}
